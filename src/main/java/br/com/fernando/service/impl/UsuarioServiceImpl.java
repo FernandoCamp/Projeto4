@@ -19,6 +19,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 		UsuarioEntity usuarioEntity = new UsuarioEntity();
 		BeanUtils.copyProperties(usuario, usuarioEntity);
 		
+		usuarioRepository.save(usuarioEntity);
+		
 		UsuarioDto usuarioDto = new UsuarioDto();
 		BeanUtils.copyProperties(usuarioEntity, usuarioDto);
 		

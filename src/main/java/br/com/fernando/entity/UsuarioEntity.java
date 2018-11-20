@@ -2,19 +2,23 @@ package br.com.fernando.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity(name = "users")
+@Entity(name = "usuarios")
 public class UsuarioEntity implements Serializable{
 	private static final long serialVersionUID = -9180446678663894742L;
 	@Id
 	@GeneratedValue
 	private long id;
 	private String usuarioId;
+	@Column(nullable = false, length = 50)
 	private String nome;
+	@Column(nullable = false, length = 50)
 	private String sobrenome;
+	@Column(nullable = true, length = 120, unique = true)
 	private String email;
 	private String senhaCriptografada;
 	private String emailToken;
