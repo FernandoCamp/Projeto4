@@ -22,12 +22,13 @@ public class UsuarioController {
 	@PostMapping
 	public UsuarioResp criaUsuario(@RequestBody UsuarioReq usuario) {
 		
+		UsuarioResp usuarioResp = new UsuarioResp();
+		
 		UsuarioDto usuarioDto = new UsuarioDto();
 		BeanUtils.copyProperties(usuario, usuarioDto);
 		
-		usuarioService.criaUsuario(usuarioDto);
-		UsuarioResp usuarioResp = new UsuarioResp();
-		BeanUtils.copyProperties(usuario, usuarioResp);
+		UsuarioDto novoUsuario = usuarioService.criaUsuario(usuarioDto);
+		BeanUtils.copyProperties(novoUsuario, usuarioResp);
 		
 		return usuarioResp;
 	}

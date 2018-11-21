@@ -12,7 +12,8 @@ public class UsuarioEntity implements Serializable{
 	private static final long serialVersionUID = -9180446678663894742L;
 	@Id
 	@GeneratedValue
-	private long id;
+	private long id;	
+	@Column(nullable = false)
 	private String usuarioId;
 	@Column(nullable = false, length = 50)
 	private String nome;
@@ -30,7 +31,7 @@ public class UsuarioEntity implements Serializable{
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getUsarioId() {
+	public String getUsuarioId() {
 		return usuarioId;
 	}
 	public void setUsuarioId(String usuarioId) {
