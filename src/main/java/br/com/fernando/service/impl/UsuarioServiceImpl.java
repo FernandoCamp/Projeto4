@@ -16,14 +16,21 @@ public class UsuarioServiceImpl implements UsuarioService {
 	private UsuarioRepository usuarioRepository;
 	
 	public UsuarioDto criaUsuario(UsuarioDto usuario) {
+		if (usuarioRepository.findByEmail(usuario.getEmail()) != null) {
+			throw new RuntimeException("Email existente.");
+		}
 		UsuarioEntity usuarioEntity = new UsuarioEntity();
 		BeanUtils.copyProperties(usuario, usuarioEntity);
-		
 		usuarioRepository.save(usuarioEntity);
-		
 		UsuarioDto usuarioDto = new UsuarioDto();
 		BeanUtils.copyProperties(usuarioEntity, usuarioDto);
-		
+		return usuarioDto;
+	}
+
+	public UsuarioDto buscaPeloEmail(String email) {
+		UsuarioEntity usuarioEntity = usuarioRepository.findByEmail(email);
+		UsuarioDto usuarioDto = new UsuarioDto();
+		BeanUtils.copyProperties(usuarioEntity, usuarioDto);
 		return usuarioDto;
 	}
 
